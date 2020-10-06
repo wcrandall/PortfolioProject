@@ -1,3 +1,5 @@
+using System;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -32,6 +34,8 @@ namespace Portfolio
             });
             services.AddDbContext<ProjectContext>(opt=>opt.UseSqlServer(Configuration.GetConnectionString("ProjectsConnection")));
             services.AddScoped<IProjectRepo, ProjectRepo>(); 
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies()); 
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

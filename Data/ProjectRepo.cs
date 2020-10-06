@@ -10,7 +10,15 @@ namespace Portfolio.Data
         public ProjectRepo(ProjectContext projectContext)
         {
             _projectContext = projectContext;    
-        } 
+        }
+        public void SaveChanges()
+        {
+            _projectContext.SaveChanges();
+        }
+        public void DeleteProject(Project project)
+        {
+            _projectContext.Projects.Remove(project); 
+        }
 
         public IEnumerable<Project> GetAllProjects()
         {
@@ -19,7 +27,17 @@ namespace Portfolio.Data
 
         public Project GetProject(int id)
         {
-            return _projectContext.Projects.SingleOrDefault(p=>p.Id==id); 
+            return _projectContext.Projects.FirstOrDefault(p=>p.Id==id); 
+        }
+
+        public void UpdateProject(Project project)
+        {
+            _projectContext.Projects.Update(project);
+        }
+
+        public void CreateProject(Project project)
+        {
+            _projectContext.Add(project);
         }
     }
 }
