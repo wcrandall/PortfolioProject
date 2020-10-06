@@ -6,28 +6,20 @@ namespace Portfolio.Data
 {
     public class ProjectRepo:IProjectRepo
     {
-        private readonly List<Project> _projects = new List<Project>(){
-            new Project(){
-                Title="Studier",
-                Url="givemejob.com", 
-                Description="helps study", 
-                Id=1
-            }, 
-            new Project(){
-                Title="Portfolio", 
-                Url="lolLIEKTHATSGONNAHAPPEN.com",
-                Description="jokes are good", 
-                Id=2
-            }
-        };
+        private readonly ProjectContext _projectContext;
+        public ProjectRepo(ProjectContext projectContext)
+        {
+            _projectContext = projectContext;    
+        } 
+
         public IEnumerable<Project> GetAllProjects()
         {
-            return _projects; 
+            return _projectContext.Projects.ToList(); 
         }
 
         public Project GetProject(int id)
         {
-            return _projects.SingleOrDefault(p=>p.Id == id); 
+            return _projectContext.Projects.SingleOrDefault(p=>p.Id==id); 
         }
     }
 }

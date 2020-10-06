@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -29,6 +30,7 @@ namespace Portfolio
             {
                 configuration.RootPath = "ClientApp/build";
             });
+            services.AddDbContext<ProjectContext>(opt=>opt.UseSqlServer(Configuration.GetConnectionString("ProjectsConnection")));
             services.AddScoped<IProjectRepo, ProjectRepo>(); 
         }
 
