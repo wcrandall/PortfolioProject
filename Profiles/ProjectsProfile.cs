@@ -11,7 +11,8 @@ namespace Portfolio.Profiles
             //<source, target>
             CreateMap<Project, ProjectReadDto>();
             CreateMap<ProjectCreateDto, Project>(); 
-            CreateMap<Project, ProjectReadDto>(); 
+            CreateMap<Project, ProjectUpdateDto>(); 
+            CreateMap<ProjectUpdateDto, Project>(); 
 
         }
     }
